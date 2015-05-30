@@ -25,15 +25,14 @@ if (Meteor.isClient) {
     Template.registerHelper("prettifyDate", function(date) {
             if (date){
                 var d = new Date(date);
-                var formated = addZero(d.getDay()) + "-" + addZero(d.getMonth()) + "-" + d.getFullYear() + " ";
+                var formated = addZero(d.getDate()) + "-" + addZero(d.getMonth() + 1) + "-" + d.getFullYear() + " ";
                 formated += d.getHours() + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds());
                 return formated;
             }
             function addZero (number){
                 if (number < 10)
-                    return "0"+number;
-                else
-                    return number;
+                    number = "0"+number;
+                return number;
             }
         }
     );
