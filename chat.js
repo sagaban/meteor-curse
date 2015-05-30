@@ -22,5 +22,20 @@ if (Meteor.isClient) {
         }
     })
 
+    Template.registerHelper("prettifyDate", function(date) {
+            if (date){
+                var d = new Date(date);
+                var formated = addZero(d.getDay()) + "-" + addZero(d.getMonth()) + "-" + d.getFullYear() + " ";
+                formated += d.getHours() + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds());
+                return formated;
+            }
+            function addZero (number){
+                if (number < 10)
+                    return "0"+number;
+                else
+                    return number;
+            }
+        }
+    );
 }
 

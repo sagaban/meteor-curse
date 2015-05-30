@@ -14,7 +14,7 @@
 <template name="chat">
     <ul>
         {{#each mensajes}}
-            <li>{{texto}}</li>
+            <li>{{prettifyDate creado}}: {{texto}}</li>
         {{/each}}
     </ul>
     
