@@ -1,15 +1,15 @@
-Mensajes = new Mongo.Collection('mensajes')
+Mensajes = new Mongo.Collection('mensajes');
 
 if (Meteor.isClient) {
     Template.chat.helpers({
         mensajes: function () {
             return Mensajes.find();
         }
-    })
+    });
 
     Template.chat.events({
         'submit': function (event) {
-            event.preventDefault()
+            event.preventDefault();
 
             var $mensaje = $('#mensaje');
 
@@ -20,7 +20,7 @@ if (Meteor.isClient) {
 
             $mensaje.val('').focus();
         }
-    })
+    });
 
     Template.registerHelper("prettifyDate", function(date) {
             if (date){
