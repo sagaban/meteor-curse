@@ -1,15 +1,33 @@
 <head>
-  <title>chat</title>
+    <title>chat</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<div class="container">
+    <h1>Bienvenido a la conversación</h1>
 
-  {{> hello}}
+    {{> chat}}
+</div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <button id="hola">Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+
+<template name="chat">
+    <ul>
+        {{#each mensajes}}
+            <li>{{texto}}</li>
+        {{/each}}
+    </ul>
+    
+    <form>
+        <div class="row">
+            <div class="col-xs-8 col-md-4">
+                <input class="form-control" type="text" name="mensaje" id="mensaje" autofocus>
+            </div>
+            <div class="col-xs-4 col-md-2">
+                <button class="btn btn-default btn-block" type="submit">Enviar</button>
+            </div>
+        </div>
+    </form>
+
 </template>
+

@@ -1,23 +1,26 @@
+Mensajes = new Mongo.Collection('mensajes')
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+    Template.chat.helpers({
+        mensajes: function () {
+            return Mensajes.find();
+        }
+    })
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
+    Template.chat.events({
+        'submit': function (event) {
+            event.preventDefault()
 
-  Template.hello.events({
-    'click button#hola': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+            var $mensaje = $('#mensaje');
+
+            var texto    = $mensaje.val().trim();
+            if (texto) {
+                Mensajes.insert({texto: texto, creado : Date.now()})
+            }
+
+            $mensaje.val('').focus();
+        }
+    })
+
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
